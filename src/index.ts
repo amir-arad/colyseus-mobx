@@ -133,8 +133,14 @@ function wireSchemaChanges<T>(getColyseusState: () => Schema & T, shadowState: T
     colyseusState.triggerAll();
 }
 
-export function getMobxView<T>(state: Schema & T): T {
+/**
+ * provide a mobx object that reflects the state of the game, and gets updated whenever colyseus updates.
+ * Notice: this method registers callbacks to the colyseus state. if they are replaced, the mobx state may stop updating.
+ * Changes to the mobx state will not be reflected in the game state
+ * @param colyseusState the colyseus game state
+ */
+export function getMobxView<T>(colyseusState: Schema & T): T {
     const mobxState = observable({} as T);
-    wireSchemaChanges(() => state, mobxState);
+    wireSchemaChanges(() => colyseusState, mobxState);
     return mobxState;
 }

@@ -1,15 +1,18 @@
-# Template Typescript library
+# colyseus-mobx
 
-A library template project
+a mobx view of colyseus state
 
-## what's inside
- - code written in typescript
- - testing done with [Tape](https://www.npmjs.com/package/tape)
- - test files are inside the src library
- - prettier and eslint 
- - circleci setup for automatic testing
- 
+## Installation
+`npm install colyseus-mobx --save`
 
+## How to use
+Import `getMobxView` and call it once when connecting to a room on the client side, 
+```typescript
+import { getMobxView } from 'colyseus-mobx';
+const room: Room<GameState> = await client.joinOrCreate("game");
+const mobxState = getMobxView(room.state);
+```
+then you can wire observers to `mobxState` and start rendering.
 
 ## Developer instructions
 
