@@ -48,6 +48,8 @@ test('ShallowMapState change field', (t) => {
 test('ShallowMapState remove field', (t) => {
     t.plan(2);
     const fixture = new Fixture(ShallowMapState);
+    fixture.origin.mapNumbers['1'] = 1;
+    fixture.origin.mapNumbers['2'] = 2;
 
     when(
         () => fixture.mobxState.mapNumbers['1'] == undefined,
