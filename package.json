@@ -1,8 +1,7 @@
 {
-    "name": "typescript-boilerplate-lib",
-    "private": true,
+    "name": "colyseus-mobx",
     "version": "0.0.1",
-    "description": "Generic project boilerplate for TypeScript libraries",
+    "description": "a mobx view of colyseus state",
     "author": "Amir Arad <greenshade@gmail.com>",
     "license": "MIT",
     "main": "./dist/index.js",
@@ -18,7 +17,7 @@
         "clean": "rimraf ./dist/",
         "prebuild": "npm run clean",
         "build": "tsc -p ./tsconfig.prod.json",
-        "test": "ts-node node_modules/tape/bin/tape \"src/**/*.test.ts?(x)\" | tap-set-exit",
+        "test": "ts-node -r source-map-support/register node_modules/tape/bin/tape \"src/**/*.test.ts?(x)\" | tap-set-exit | tap-color",
         "prepack": "npm run prettify && npm run build",
         "prettify": "npx prettier \"src/**/*.ts\" --write"
     },
@@ -27,17 +26,26 @@
             "pre-commit": "npm run prettify"
         }
     },
+    "peerDependencies": {
+        "@colyseus/schema": "0.5.x",
+        "mobx": "5.x"
+    },
     "devDependencies": {
+        "@colyseus/schema": "^0.5.39",
         "@types/tape": "^4.13.0",
         "@typescript-eslint/eslint-plugin": "^2.31.0",
         "@typescript-eslint/parser": "^2.31.0",
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.11.0",
         "husky": "^4.2.5",
+        "mobx": "^5.15.4",
         "rimraf": "^3.0.2",
+        "tap-color": "^1.2.0",
         "tap-set-exit": "1.1.1",
         "tape": "^5.0.0",
+        "tape-promise": "^4.0.0",
         "ts-node": "^8.10.1",
         "typescript": "~3.8.3"
-    }
+    },
+    "dependencies": {}
 }

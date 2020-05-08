@@ -8,7 +8,10 @@
             "type": "node",
             "request": "launch",
             "name": "Test All",
-            "runtimeArgs": ["-r", "ts-node/register/transpile-only"],
+            "runtimeArgs": [
+                "-r", "source-map-support/register",
+                "-r", "ts-node/register/transpile-only",
+            ],
             "program": "${workspaceFolder}/node_modules/tape/bin/tape",
             "args": ["${workspaceFolder}/src/**/*.test.ts?(x)"],
             "cwd": "${workspaceRoot}",
@@ -24,7 +27,10 @@
             "type": "node",
             "request": "launch",
             "name": "Test Current File",
-            "runtimeArgs": ["-r", "ts-node/register/transpile-only"],
+            "runtimeArgs": [
+                "-r", "source-map-support/register",
+                "-r", "ts-node/register/transpile-only",
+            ],
             "program": "${workspaceFolder}/node_modules/tape/bin/tape",
             "args": ["${file}"],
             "cwd": "${workspaceRoot}",
