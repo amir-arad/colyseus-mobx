@@ -1,6 +1,6 @@
 {
     "name": "colyseus-mobx",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "a mobx view of colyseus state",
     "author": "Amir Arad <greenshade@gmail.com>",
     "license": "MIT",
