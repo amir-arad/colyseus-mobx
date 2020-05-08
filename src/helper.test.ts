@@ -1,5 +1,6 @@
 import { Schema } from '@colyseus/schema';
 import { getMobxView } from '.';
+import { Test } from 'tape';
 
 /**
  * manage the state we need for a simple test
@@ -31,6 +32,14 @@ export class Fixture<T> {
      * update the client after changes are made to the server state
      */
     updateColyseusState() {
-        this.state.decode(this.origin.encode());
+        this.state.decode(this.origin.encode()); // move changes from origin to state
+    }
+
+    /**
+     * update the client and assert that mobx state changed accordingly
+     */
+    updateAndAssert(t: Test) {
+        this.updateColyseusState();
+        t.deepLooseEqual(this.mobxState, this.origin); // assert that state and mobx are the same
     }
 }

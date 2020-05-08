@@ -4,7 +4,6 @@ import { observable, runInAction } from 'mobx';
 function setValue<T, K extends keyof T>(getValue: () => T[K], shadowState: T, field: K) {
     const value = getValue();
     if (value instanceof Schema) {
-        // TODO make more robust guard
         if (!shadowState[field]) {
             runInAction(() => {
                 shadowState[field] = { ...value };
@@ -66,19 +65,27 @@ function wireMapChanges<T>(getColyseusState: () => MapSchema & T, shadowState: T
     };
 }
 
+const schemaKeys: string[] = Object.keys(new (class extends Schema {})()).concat(['onChange']); // keys that exist on any schema object - are not data fields
+
 function wireSchemaChanges<T>(getColyseusState: () => Schema & T, shadowState: T) {
     const colyseusState = getColyseusState();
     colyseusState.onChange = (changes) => {
         for (const change of changes) {
             const field = change.field as keyof T;
-            if (getColyseusState()[field] === undefined) {
-                delete shadowState[field];
-            } else {
+            if (field in getColyseusState()) {
                 setValue(() => getColyseusState()[field], shadowState, field);
+            } else {
+                delete shadowState[field];
             }
         }
     };
-    colyseusState.triggerAll();
+    // colyseusState.triggerAll();
+    for (const f in colyseusState) {
+        if (!schemaKeys.includes(f) && Object.prototype.hasOwnProperty.call(colyseusState, f)) {
+            const field = f as keyof T;
+            setValue(() => getColyseusState()[field], shadowState, field);
+        }
+    }
 }
 
 /**
