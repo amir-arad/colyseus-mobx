@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test All",
+            "runtimeArgs": ["-r", "ts-node/register/transpile-only"],
+            "program": "${workspaceFolder}/node_modules/tape/bin/tape",
+            "args": ["${workspaceFolder}/src/**/*.test.ts?(x)"],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "env": {
+                "TS_NODE_IGNORE": "false"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test Current File",
+            "runtimeArgs": ["-r", "ts-node/register/transpile-only"],
+            "program": "${workspaceFolder}/node_modules/tape/bin/tape",
+            "args": ["${file}"],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "env": {
+                "TS_NODE_IGNORE": "false"
+            }
+        }
+    ]
+}
