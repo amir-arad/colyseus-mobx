@@ -30,8 +30,7 @@ test('DeepState change field deep', (t) => {
     fixture.updateAndAssert(t);
 });
 
-// colyseus trigger event with old value only
-test.skip('DeepState change field with deep value', (t) => {
+test('DeepState change field with deep value', (t) => {
     t.plan(2);
     const fixture = new Fixture(DeepState);
 
@@ -41,7 +40,7 @@ test.skip('DeepState change field with deep value', (t) => {
     fixture.updateAndAssert(t);
 
     const child2 = new DeepState();
-    child1.counter = 2;
+    child2.counter = 2;
     fixture.origin.child = child2;
     fixture.updateAndAssert(t);
 });

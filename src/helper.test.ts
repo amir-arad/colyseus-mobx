@@ -23,7 +23,6 @@ export class Fixture<T> {
     constructor(constructor: new () => T & Schema) {
         this.origin = new constructor();
         this.state = new constructor();
-        this.origin.encodeAll(); // TODO I think this is not needed?
         this.state.decode(this.origin.encodeAll());
         this.mobxState = getMobxView(this.state);
     }
