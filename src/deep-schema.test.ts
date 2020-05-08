@@ -1,5 +1,4 @@
 import { Schema, type } from '@colyseus/schema';
-import { when } from 'mobx';
 import test from 'tape';
 import { Fixture } from './helper.test';
 
