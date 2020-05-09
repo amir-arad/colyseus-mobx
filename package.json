@@ -17,7 +17,7 @@
         "clean": "rimraf ./dist/",
         "prebuild": "npm run clean",
         "build": "tsc -p ./tsconfig.prod.json",
-        "test": "ts-node -r source-map-support/register node_modules/tape/bin/tape \"src/**/*.test.ts?(x)\" | tap-set-exit | tap-color",
+        "test": "ts-node node_modules/tape/bin/tape \"src/**/*.test.ts?(x)\" | tap-set-exit | tap-color",
         "prepack": "npm run prettify && npm run build",
         "prettify": "npx prettier \"src/**/*.ts\" --write"
     },
@@ -43,9 +43,7 @@
         "tap-color": "^1.2.0",
         "tap-set-exit": "1.1.1",
         "tape": "^5.0.0",
-        "tape-promise": "^4.0.0",
         "ts-node": "^8.10.1",
         "typescript": "~3.8.3"
-    },
-    "dependencies": {}
+    }
 }
