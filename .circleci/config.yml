@@ -14,8 +14,8 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
-            - run: npm install tap-xunit
-            - run: npm test | tap-xunit > ~/reports/test.xml
+            - run: npm install --no-save tap-xunit
+            - run: npm test | npx tap-xunit > ~/reports/test.xml
             - run: npm run build
       - store_test_results:
           path: ~/reports
