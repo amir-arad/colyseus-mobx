@@ -7,14 +7,20 @@ jobs:
       name: node/default
     steps:
       - checkout
+      - run: mkdir -p ~/reports
       - run: node --version
       - run: npm --version
       - run: env
       - node/with-cache:
           steps:
             - run: npm install
-            - run: npm test
+            - run: npm install --no-save tap-xunit
+            - run: npm test | npx tap-xunit > ~/reports/test.xml
             - run: npm run build
+      - store_test_results:
+          path: ~/reports
+      - store_artifacts:
+          path: ~/reports  
 
 workflows:
     build-and-test:
