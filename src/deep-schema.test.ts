@@ -32,15 +32,17 @@ test('DeepState change field deep', (t) => {
 
 test('DeepState change field with deep value', (t) => {
     t.plan(2);
-    const fixture = new Fixture(DeepState);
-
     const child1 = new DeepState();
     child1.counter = 1;
-    fixture.origin.child = child1;
-    fixture.updateAndAssert(t);
 
     const child2 = new DeepState();
     child2.counter = 2;
+
+    const fixture = new Fixture(DeepState);
+
+    fixture.origin.child = child1;
+    fixture.updateAndAssert(t);
+
     fixture.origin.child = child2;
     fixture.updateAndAssert(t);
 });
