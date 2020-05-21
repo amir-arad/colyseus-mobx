@@ -1,6 +1,6 @@
 # colyseus-mobx
 
-a mobx view of colyseus state
+a mobx view of colyseus state. dontinues the work in https://github.com/a-rts/colyseus-mobx
 
 ## Installation
 `npm install colyseus-mobx --save`
