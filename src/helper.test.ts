@@ -1,6 +1,7 @@
 import { Schema } from '@colyseus/schema';
 import { getMobxView } from '.';
 import { Test } from 'tape';
+import { json } from 'json-mobx';
 
 /**
  * manage the state we need for a simple test
@@ -39,6 +40,8 @@ export class Fixture<T> {
      */
     updateAndAssert(t: Test) {
         this.updateColyseusState();
-        t.deepLooseEqual(this.mobxState, this.origin); // assert that state and mobx are the same
+        const mobxJson = JSON.parse(JSON.stringify(json.save(this.mobxState)));
+        const originJson = this.origin.toJSON();
+        t.deepLooseEqual(mobxJson, originJson); // assert that state and mobx are the same
     }
 }

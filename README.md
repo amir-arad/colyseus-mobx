@@ -1,6 +1,16 @@
 # colyseus-mobx
 
-a mobx view of colyseus state. dontinues the work in https://github.com/a-rts/colyseus-mobx
+a mobx view of colyseus state. continues the work in https://github.com/a-rts/colyseus-mobx
+
+## version support 
+
+Written for Mobx 5.x, but should probably work with other Mobx versions.
+
+Due to breaking API changes in Colyseus, this version only supports Colyseus 0.14 and above (@colyseus/schema >= 1.0.2)
+
+## Pending support
+
+The schema types new to Colyseus 0.14 (CollectionSchema and SetSchema) are not yet supported. please open an issue if you would like to use them.
 
 ## Installation
 `npm install colyseus-mobx --save`
