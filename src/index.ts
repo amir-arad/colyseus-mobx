@@ -6,7 +6,7 @@ function setValue<T, K extends keyof T>(getValue: () => T[K], shadowState: T, fi
     if (value instanceof Schema) {
         if (!shadowState[field]) {
             runInAction(() => {
-                shadowState[field] = { ...value };
+                shadowState[field] = { ...value.toJSON() } as T[K];
             });
             wireSchemaChanges(getValue as () => T[K] & Schema, shadowState[field]);
         }
@@ -21,7 +21,7 @@ function setValue<T, K extends keyof T>(getValue: () => T[K], shadowState: T, fi
     } else if (value instanceof MapSchema) {
         if (!shadowState[field]) {
             runInAction(() => {
-                shadowState[field] = { ...value };
+                shadowState[field] = Object.fromEntries(value) as T[K];
             });
             wireMapChanges(getValue as () => T[K] & MapSchema, shadowState[field]);
         }
@@ -52,7 +52,7 @@ function wireMapChanges<T>(getColyseusState: () => MapSchema & T, shadowState: T
     const colyseusState = getColyseusState();
     colyseusState.onAdd = (_, k) => {
         const key = k as keyof T;
-        setValue(() => getColyseusState()[key], shadowState, key);
+        setValue(() => getColyseusState().get(k), shadowState, key);
     };
     colyseusState.onChange = (_, k) => {
         // maybe not an actual change in direct value? need to test with Schema value
