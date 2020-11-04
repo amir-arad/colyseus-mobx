@@ -27,11 +27,11 @@
         }
     },
     "peerDependencies": {
-        "@colyseus/schema": "0.5.x",
+        "@colyseus/schema": "1.x",
         "mobx": "5.x"
     },
     "devDependencies": {
-        "@colyseus/schema": "^0.5.39",
+        "@colyseus/schema": "^1.0.1",
         "@types/tape": "^4.13.0",
         "@typescript-eslint/eslint-plugin": "^2.31.0",
         "@typescript-eslint/parser": "^2.31.0",
