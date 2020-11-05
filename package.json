@@ -21,7 +21,7 @@
         "build": "tsc -p ./tsconfig.prod.json",
         "test": "ts-node node_modules/tape/bin/tape \"src/**/*.test.ts?(x)\" | tap-color | tap-set-exit",
         "prepack": "npm run prettify && npm run build",
-        "prettify": "npx prettier \"src/**/*.ts\" --write"
+        "prettify": "prettier \"src/**/*.ts\" --write"
     },
     "husky": {
         "hooks": {
@@ -42,6 +42,7 @@
         "husky": "^4.2.5",
         "json-mobx": "^0.7.0",
         "mobx": "^5.15.4",
+        "prettier": "^2.1.2",
         "rimraf": "^3.0.2",
         "tap-color": "^1.2.0",
         "tap-set-exit": "1.1.1",
